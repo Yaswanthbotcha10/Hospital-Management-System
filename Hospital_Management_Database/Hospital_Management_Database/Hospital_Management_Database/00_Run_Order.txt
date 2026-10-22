@@ -1,0 +1,22 @@
+HOSPITAL MANAGEMENT DATABASE — EXECUTION ORDER
+================================================
+
+Run each SQL file in MySQL Workbench, in this exact order:
+
+1. Database/01_Create_Database.sql
+2. Database/02_Create_Tables.sql
+3. Database/03_Insert_Sample_Data.sql
+4. Indexes/05_Create_Indexes.sql
+5. Views/06_Create_Views.sql
+6. Stored_Procedures/07_Create_Procedures.sql
+7. Triggers/08_Create_Triggers.sql
+8. Analysis/09_Patient_Analysis.sql
+9. Analysis/10_Appointment_Analysis.sql
+10. Analysis/11_Admission_Treatment_Analysis.sql
+11. Analysis/12_Revenue_Analysis.sql
+
+Notes:
+- 04_Constraints_Notes.sql is documentation; constraints are defined in 02_Create_Tables.sql.
+- Select all statements in each file and execute them.
+- Stored procedures and triggers use DELIMITER, supported by MySQL Workbench.
+- Use MySQL 8.0 or newer.

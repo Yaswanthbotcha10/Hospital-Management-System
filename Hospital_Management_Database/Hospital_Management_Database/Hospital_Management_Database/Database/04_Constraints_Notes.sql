@@ -1,0 +1,7 @@
+-- Constraint reference (constraints are already created in 02_Create_Tables.sql)
+-- PRIMARY KEY: uniquely identifies each row.
+-- FOREIGN KEY: prevents references to missing departments, doctors, patients, rooms, bills, etc.
+-- UNIQUE: prevents duplicate department names, patient contact values, room numbers, and transaction references.
+-- NOT NULL: requires essential values such as names, dates, and amounts.
+-- CHECK: validates non-negative fees/costs and valid date/duration ranges.
+-- ENUM: limits status and category columns to supported values.

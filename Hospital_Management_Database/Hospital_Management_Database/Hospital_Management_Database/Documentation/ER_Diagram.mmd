@@ -1,0 +1,89 @@
+erDiagram
+    DEPARTMENTS ||--o{ DOCTORS : contains
+    PATIENTS ||--o{ APPOINTMENTS : books
+    DOCTORS ||--o{ APPOINTMENTS : handles
+    PATIENTS ||--o{ ADMISSIONS : has
+    ROOMS ||--o{ ADMISSIONS : assigned_to
+    DOCTORS ||--o{ ADMISSIONS : attends
+    ADMISSIONS ||--o{ TREATMENTS : includes
+    PATIENTS ||--o{ PRESCRIPTIONS : receives
+    DOCTORS ||--o{ PRESCRIPTIONS : writes
+    APPOINTMENTS o|--o{ PRESCRIPTIONS : may_generate
+    PRESCRIPTIONS ||--|{ PRESCRIPTION_ITEMS : contains
+    PATIENTS ||--o{ BILLS : receives
+    APPOINTMENTS o|--o{ BILLS : may_be_source
+    ADMISSIONS o|--o{ BILLS : may_be_source
+    BILLS ||--o{ PAYMENTS : paid_by
+    APPOINTMENTS ||--o{ APPOINTMENT_STATUS_HISTORY : records
+
+    DEPARTMENTS {
+        int department_id PK
+        varchar department_name
+        varchar location
+    }
+    DOCTORS {
+        int doctor_id PK
+        int department_id FK
+        varchar specialization
+        decimal consultation_fee
+    }
+    PATIENTS {
+        int patient_id PK
+        varchar first_name
+        varchar last_name
+        date date_of_birth
+    }
+    APPOINTMENTS {
+        int appointment_id PK
+        int patient_id FK
+        int doctor_id FK
+        datetime appointment_datetime
+        enum status
+    }
+    ROOMS {
+        int room_id PK
+        varchar room_number
+        enum room_type
+        enum room_status
+    }
+    ADMISSIONS {
+        int admission_id PK
+        int patient_id FK
+        int room_id FK
+        int attending_doctor_id FK
+    }
+    TREATMENTS {
+        int treatment_id PK
+        int admission_id FK
+        decimal cost
+    }
+    PRESCRIPTIONS {
+        int prescription_id PK
+        int patient_id FK
+        int doctor_id FK
+        int appointment_id FK
+    }
+    PRESCRIPTION_ITEMS {
+        int prescription_item_id PK
+        int prescription_id FK
+        varchar medicine_name
+    }
+    BILLS {
+        int bill_id PK
+        int patient_id FK
+        int appointment_id FK
+        int admission_id FK
+        decimal amount
+    }
+    PAYMENTS {
+        int payment_id PK
+        int bill_id FK
+        decimal amount
+        enum payment_status
+    }
+    APPOINTMENT_STATUS_HISTORY {
+        int history_id PK
+        int appointment_id FK
+        varchar old_status
+        varchar new_status
+    }
